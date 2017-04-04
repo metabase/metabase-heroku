@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -eu
+
+BUILD_DIR="$1"
+CACHE_DIR="$2"
+
+METABASE_VERSION=`cat $BUILD_DIR/metabase-version`
+METABASE_DIR="$BUILD_DIR/target/uberjar"
+
+METABASE_JAR="$METABASE_DIR/metabase.jar"
+METABASE_JAR_CACHED="$CACHE_DIR/metabase-$METABASE_VERSION.jar"
+
+METABASE_URL="http://downloads.metabase.com/$METABASE_VERSION/metabase.jar"
+
+mkdir -p "$METABASE_DIR"
+mkdir -p "$CACHE_DIR"
+
+if ! [ -f "$METABASE_JAR_CACHED" ]; then
+  echo "-----> Downloading Metabase: $METABASE_URL... "
+  curl -Lfs --retry 3 -o "$METABASE_JAR_CACHED"  "$METABASE_URL"
+  echo "done"
+fi
+
+cp "$METABASE_JAR_CACHED" "$METABASE_JAR"
+``
+echo "-----> Verifying JAR signature... "
+jarsigner -verify "$METABASE_JAR"
+echo "done"

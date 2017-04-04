@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -eu
+
+if [ -f "$1/metabase-version" ]; then
+  echo "Metabase"
+  exit 0
+else
+  exit 1
+fi
