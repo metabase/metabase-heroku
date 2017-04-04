@@ -22,8 +22,10 @@ if ! [ -f "$METABASE_JAR_CACHED" ]; then
   echo "done"
 fi
 
+echo "-----> Copying JAR... "
 cp "$METABASE_JAR_CACHED" "$METABASE_JAR"
-``
+echo "done"
+
 echo "-----> Verifying JAR signature... "
 jarsigner -verify "$METABASE_JAR"
 echo "done"

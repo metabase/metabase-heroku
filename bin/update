@@ -12,7 +12,6 @@ BUILD_DIR="$PWD"
 CACHE_DIR="$PWD/.cache"
 
 METABASE_VERSION="$1"
-METABASE_URL="http://downloads.metabase.com/$METABASE_VERSION/metabase.jar"
 
 echo "--> Saving $METABASE_VERSION to 'metabase-version'... "
 printf "%s" "$METABASE_VERSION" > "$BUILD_DIR/metabase-version"
@@ -24,7 +23,8 @@ echo "--> Testing 'bin/compile'... "
 ./bin/compile "$BUILD_DIR" "$CACHE_DIR"
 
 echo "--> Committing... "
-git commit -m "Deploy $METABASE_VERSION" "$BUILD_DIR/metabase-version"
+git add "$BUILD_DIR/metabase-version"
+git commit -m "$METABASE_VERSION"
 
 echo "--> Tagging... "
 git tag "$METABASE_VERSION"
