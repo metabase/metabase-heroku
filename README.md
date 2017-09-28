@@ -1,3 +1,7 @@
+# PLEASE DON'T USE THIS YET
+[www.github.com/metabase/metabase-deploy](www.github.com/metabase/metabase-deploy) is the place to go to deploy from Heroku. This is still a work in progress.
+
+
 [![Metabase Logo](http://www.metabase.com/images/logo.svg)](http://www.metabase.com/)
 
 [Metabase](http://www.metabase.com/) is the easy, open source way for everyone in your company to ask questions and learn from data.
